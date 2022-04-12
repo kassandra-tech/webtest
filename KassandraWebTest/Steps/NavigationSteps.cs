@@ -1,4 +1,8 @@
-﻿using KassandraWebTest.Framework;
+﻿using System;
+
+using KassandraWebTest.Framework;
+using KassandraWebTest.Kassandra;
+
 using TechTalk.SpecFlow;
 
 namespace KassandraWebTest.Steps
@@ -28,6 +32,31 @@ namespace KassandraWebTest.Steps
             try
             {
                 Browser.Driver.Navigate().GoToUrl(url);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Navigate to Kassandra screens.
+        /// </summary>
+        /// <param name="screenName">Screen to navigate to.</param>
+        [StepDefinition(@"the user navigates to the ""(.*)"" screen")]
+        public void UserNavigatesToScreen(string screenName)
+        {
+            var url = SiteMap.GetPageUrl(screenName);
+            try
+            {
+                if (url != SiteMap.UnknownScreen)
+                {
+                    Browser.Driver.Navigate().GoToUrl(url);
+                }
+                else
+                {
+                    throw new Exception($"{screenName} is not a valid Kassandra screen");
+                }
             }
             catch
             {

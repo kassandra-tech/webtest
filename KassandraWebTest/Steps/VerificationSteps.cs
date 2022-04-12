@@ -1,6 +1,9 @@
-﻿using FluentAssertions;
+﻿using System;
+
+using FluentAssertions;
 
 using KassandraWebTest.Framework;
+using KassandraWebTest.Kassandra;
 
 using TechTalk.SpecFlow;
 
@@ -378,5 +381,33 @@ namespace KassandraWebTest.Steps
             }
         }
         #endregion Label
+
+        #region Screen
+        /// <summary>
+        /// Check if the expected screen is displayed on the current screen.
+        /// This expects the screenName to be the 'title' attribute of the screen.
+        /// </summary>
+        /// <param name="screenName">Name of the expected screen.</param>
+        [StepDefinition(@"the ""(.*)"" screen is displayed")]
+        public void ScreenIsDisplayed(string screenName)
+        {
+            var url = SiteMap.GetPageUrl(screenName);
+            try
+            {
+                if (url != SiteMap.UnknownScreen)
+                {
+                    Browser.Driver.Title.Should().BeEquivalentTo(screenName);
+                }
+                else
+                {
+                    throw new Exception($"{screenName} is not a valid Kassandra screen");
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion Screen
     }
 }

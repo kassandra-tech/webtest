@@ -3,7 +3,7 @@
     /// <summary>
     /// Supported Kassandra Element Types
     /// </summary>
-    public enum KassandraElementType
+    public enum ElementType
     {
         Button = 1,
         Checkbox,
