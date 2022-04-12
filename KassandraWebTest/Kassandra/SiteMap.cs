@@ -56,6 +56,11 @@
         public const string LogIn = "Log In";
 
         /// <summary>
+        /// Markets
+        /// </summary>
+        public const string Markets = "Markets";
+
+        /// <summary>
         /// Profile
         /// </summary>
         public const string Profile = "Profile";
@@ -124,6 +129,7 @@
                 ForgotAccountCredentials => $"{KassandraBaseAddress}forgot-account-credentials",
                 Home => KassandraBaseAddress,
                 LogIn => $"{KassandraBaseAddress}log-in",
+                Markets => $"{KassandraBaseAddress}markets",
                 Profile => $"{KassandraBaseAddress}profile",
                 ResetPassword => $"{KassandraBaseAddress}reset-password",
                 ResetSecurityToken => $"{KassandraBaseAddress}reset-security-token",

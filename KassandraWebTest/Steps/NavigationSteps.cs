@@ -3,6 +3,8 @@
 using KassandraWebTest.Framework;
 using KassandraWebTest.Kassandra;
 
+using FluentAssertions;
+
 using TechTalk.SpecFlow;
 
 namespace KassandraWebTest.Steps
@@ -52,6 +54,7 @@ namespace KassandraWebTest.Steps
                 if (url != SiteMap.UnknownScreen)
                 {
                     Browser.Driver.Navigate().GoToUrl(url);
+                    Browser.Driver.Title.Should().BeEquivalentTo(screenName);
                 }
                 else
                 {
