@@ -1,4 +1,5 @@
 ﻿using KassandraWebTest.Framework;
+using KassandraWebTest.Pages;
 
 using TechTalk.SpecFlow;
 
@@ -28,7 +29,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(ButtonElementName(buttonName)).Click();
+                Browser.Find.ElementById(PageBase.ButtonElementName(buttonName)).Click();
             }
             catch
             {
@@ -47,7 +48,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(IconElementName(iconName)).Click();
+                Browser.Find.ElementById(PageBase.IconElementName(iconName)).Click();
             }
             catch
             {
@@ -66,32 +67,13 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(DropdownElementName(dropdownName)).Click();
+                Browser.Find.ElementById(PageBase.DropdownElementName(dropdownName)).Click();
             }
             catch
             {
                 throw;
             }
         }
-
-        ///// <summary>
-        ///// Select item in dropdown by text.
-        ///// </summary>
-        ///// <param name="selection">Item to select in the dropdown.</param>
-        ///// <param name="dropdownName">Name of the dropdown to interact with.</param>
-        //[StepDefinition(@"""(.*)"" is selected from the ""(.*)"" dropdown")]
-        //public void SelectedFromDropdown(string selection, string dropdownName)
-        //{
-        //    try
-        //    {
-        //        new SelectElement(Browser.FindElement(KassandraType.dropdown, dropdownName)).SelectByText(selection);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        new SelectElement(Browser.FindElementByCss(dropdownName)).SelectByValue(selection);
-        //        Console.WriteLine(e);
-        //    }
-        //}
         #endregion Dropdown
 
         #region Field
@@ -105,7 +87,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(FieldElementName(fieldName)).SendKeys(inputText);
+                Browser.Find.ElementById(PageBase.FieldElementName(fieldName)).SendKeys(inputText);
             }
             catch
             {
@@ -113,5 +95,24 @@ namespace KassandraWebTest.Steps
             }
         }
         #endregion Field
+
+        #region Filter
+        /// <summary>
+        /// Click the given filter.
+        /// </summary>
+        /// <param name="filter">Filter to click.</param>
+        [StepDefinition(@"the ""(.*)"" filter is clicked")]
+        public void FilterIsClicked(string filter)
+        {
+            try
+            {
+                Browser.Find.ElementByAttribute(filter, ElementType.Filter.ToString()).Click();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion Filter
     }
 }

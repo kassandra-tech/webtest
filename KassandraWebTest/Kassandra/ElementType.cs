@@ -9,8 +9,10 @@
         Checkbox,
         Dropdown,
         Field,
+        Filter,
         Icon,
         Label,
-        Link
+        Link,
+        SortableDropdown
     }
 }

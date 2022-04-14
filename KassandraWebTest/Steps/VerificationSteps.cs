@@ -1,9 +1,10 @@
 ﻿using System;
 
-using FluentAssertions;
-
 using KassandraWebTest.Framework;
 using KassandraWebTest.Kassandra;
+using KassandraWebTest.Pages;
+
+using FluentAssertions;
 
 using TechTalk.SpecFlow;
 
@@ -33,7 +34,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(ButtonElementName(buttonName)).Displayed.Should().BeTrue();
+                Browser.Find.ElementById(PageBase.ButtonElementName(buttonName)).Displayed.Should().BeTrue();
             }
             catch
             {
@@ -50,7 +51,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(ButtonElementName(buttonName)).Displayed.Should().BeFalse();
+                Browser.Find.ElementById(PageBase.ButtonElementName(buttonName)).Displayed.Should().BeFalse();
             }
             catch
             {
@@ -67,7 +68,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(ButtonElementName(buttonName)).Enabled.Should().BeTrue();
+                Browser.Find.ElementById(PageBase.ButtonElementName(buttonName)).Enabled.Should().BeTrue();
             }
             catch
             {
@@ -84,7 +85,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(ButtonElementName(buttonName)).Enabled.Should().BeFalse();
+                Browser.Find.ElementById(PageBase.ButtonElementName(buttonName)).Enabled.Should().BeFalse();
             }
             catch
             {
@@ -103,7 +104,41 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(IconElementName(iconName)).Displayed.Should().BeTrue();
+                Browser.Find.ElementById(PageBase.IconElementName(iconName)).Displayed.Should().BeTrue();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Check the expected icon is highlighted on the current screen.
+        /// </summary>
+        /// <param name="iconName">Expected icon name.</param>
+        [StepDefinition(@"the ""(.*)"" icon is highlighted")]
+        public void IconIsHighlighted(string iconName)
+        {
+            try
+            {
+                Browser.Find.ElementById($"{PageBase.IconElementName(iconName)}[{Attributes.Highlight(true)}]").Displayed.Should().BeTrue();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Check the expected icon is not highlighted on the current screen.
+        /// </summary>
+        /// <param name="iconName">Expected icon name.</param>
+        [StepDefinition(@"the ""(.*)"" icon is not highlighted")]
+        public void IconIsNotHighlighted(string iconName)
+        {
+            try
+            {
+                Browser.Find.ElementById($"{PageBase.IconElementName(iconName)}{Attributes.Highlight(false)}").Displayed.Should().BeTrue();
             }
             catch
             {
@@ -120,7 +155,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(IconElementName(iconName)).Displayed.Should().BeFalse();
+                Browser.Find.ElementById(PageBase.IconElementName(iconName)).Displayed.Should().BeFalse();
             }
             catch
             {
@@ -139,7 +174,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(CheckboxElementName(checkboxName)).Displayed.Should().BeTrue();
+                Browser.Find.ElementById(PageBase.CheckboxElementName(checkboxName)).Displayed.Should().BeTrue();
             }
             catch
             {
@@ -156,7 +191,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(CheckboxElementName(checkboxName)).Displayed.Should().BeFalse();
+                Browser.Find.ElementById(PageBase.CheckboxElementName(checkboxName)).Displayed.Should().BeFalse();
             }
             catch
             {
@@ -173,7 +208,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(CheckboxElementName(checkboxName)).Enabled.Should().BeTrue();
+                Browser.Find.ElementById(PageBase.CheckboxElementName(checkboxName)).Enabled.Should().BeTrue();
             }
             catch
             {
@@ -190,7 +225,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(CheckboxElementName(checkboxName)).Enabled.Should().BeFalse();
+                Browser.Find.ElementById(PageBase.CheckboxElementName(checkboxName)).Enabled.Should().BeFalse();
             }
             catch
             {
@@ -209,7 +244,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(FieldElementName(fieldName)).Displayed.Should().BeTrue();
+                Browser.Find.ElementById(PageBase.FieldElementName(fieldName)).Displayed.Should().BeTrue();
             }
             catch
             {
@@ -226,7 +261,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(FieldElementName(fieldName)).Displayed.Should().BeFalse();
+                Browser.Find.ElementById(PageBase.FieldElementName(fieldName)).Displayed.Should().BeFalse();
             }
             catch
             {
@@ -244,7 +279,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(FieldElementName(fieldName)).Text.Should().Contain(expectedText);
+                Browser.Find.ElementById(PageBase.FieldElementName(fieldName)).Text.Should().Contain(expectedText);
             }
             catch
             {
@@ -263,7 +298,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(expectedText).Text.Should().BeEquivalentTo(expectedText);
+                Browser.Find.ElementById(expectedText).Text.Should().BeEquivalentTo(expectedText);
             }
             catch
             {
@@ -336,7 +371,24 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(DropdownElementName(dropdownName)).Displayed.Should().BeTrue();
+                Browser.Find.ElementById(PageBase.DropdownElementName(dropdownName)).Displayed.Should().BeTrue();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Check that the given sortable dropdown is displayed on the current screen.
+        /// </summary>
+        /// <param name="dropdownName">Name of the dropdown.</param>
+        [StepDefinition(@"the sortable ""(.*)"" is displayed")]
+        public void ThenTheSortableIsDisplayed(string dropdownName)
+        {
+            try
+            {
+                Browser.Find.ElementById(PageBase.SortableDropdownElementName(dropdownName)).Displayed.Should().BeTrue();
             }
             catch
             {
@@ -355,7 +407,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(LabelElementName(labelName)).Displayed.Should().BeTrue();
+                Browser.Find.ElementById(PageBase.LabelElementName(labelName)).Displayed.Should().BeTrue();
             }
             catch
             {
@@ -373,7 +425,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.Element(LabelElementName(labelName)).SendKeys(expectedText);
+                Browser.Find.ElementById(PageBase.LabelElementName(labelName)).SendKeys(expectedText);
             }
             catch
             {
@@ -409,5 +461,57 @@ namespace KassandraWebTest.Steps
             }
         }
         #endregion Screen
+
+        #region Sort
+        /// <summary>
+        /// Check that elements with a given attribute are sorted in ascending order.
+        /// </summary>
+        /// <param name="attribute">Attribute to locate elements by.</param>
+        [StepDefinition(@"the ""(.*)"" are sorted in ascending order")]
+        public void AttributesSortedInAscendingOrder(string attribute)
+        {
+            var market = string.Empty;
+
+            foreach (var data in Browser.Find.ElementsByAttribute(attribute))
+            {
+                var tempMarket = data.GetAttribute(attribute);
+                var result = string.Compare(market, tempMarket);
+
+                if (result == -1)
+                {
+                    market = tempMarket;
+                }
+                else
+                {
+                    market.Should().StartWith(tempMarket);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Check that elements with a given attribute are sorted in descending order.
+        /// </summary>
+        /// <param name="attribute">Attribute to locate elements by.</param>
+        [StepDefinition(@"the ""(.*)"" are sorted in descending order")]
+        public void AttributeSortedInDescendingOrder(string attribute)
+        {
+            var market = string.Empty;
+
+            foreach (var data in Browser.Find.ElementsByAttribute(attribute))
+            {
+                var tempMarket = data.GetAttribute(attribute);
+                var result = string.Compare(market, tempMarket);
+
+                if (result == 1)
+                {
+                    market = tempMarket;
+                }
+                else
+                {
+                    tempMarket.Should().StartWith(market);
+                }
+            }
+        }
+        #endregion Sort
     }
 }

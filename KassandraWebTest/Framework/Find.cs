@@ -21,13 +21,18 @@ namespace KassandraWebTest.Framework
             Driver = driver;
         }
 
-        public IWebElement Element(string id)
+        /// <summary>
+        /// Locate an element by id.
+        /// </summary>
+        /// <param name="id">Value to locate an element by id.</param>
+        /// <returns></returns>
+        public IWebElement ElementById(string id)
         {
             IWebElement element = null;
 
             try
             {
-                element = Driver.FindElement(By.CssSelector($"#{id}"));
+                element = Driver.FindElement(By.Id(id));
             }
             catch
             {
@@ -199,7 +204,98 @@ namespace KassandraWebTest.Framework
             }
             catch
             {
-                elements.Should().NotBeEmpty($"Unable to find elements by contained text '{text}' on the current screen");
+                elements.Should().NotBeEmpty($"Unable to find elements by contained text'{text}' on the current screen");
+            }
+
+            return elements;
+        }
+
+        /// <summary>
+        /// Find element by attribute.
+        /// </summary>
+        /// <param name="attribute">Expected attribute to find in the element.</param>
+        /// <param name="type">Element type to find.</param>
+        /// <returns></returns>
+        public IWebElement ElementByAttribute(string attribute, string type = "")
+        {
+            IWebElement element = null;
+
+            try
+            {
+                element = Driver.FindElement(type == string.Empty ? By.CssSelector($"[{attribute}]") : By.CssSelector($"{type}[{attribute}]"));
+            }
+            catch
+            {
+                element.Should().NotBeNull($"Unable to find the element '{type}[{attribute}]' on the current screen");
+            }
+
+            return element;
+        }
+
+        /// <summary>
+        /// Find elements by attribute.
+        /// </summary>
+        /// <param name="attribute">Expected attribute to find in the element.</param>
+        /// <param name="type">Element type to find.</param>
+        /// <returns></returns>
+        public List<IWebElement> ElementsByAttribute(string attribute, string type = "")
+        {
+            List<IWebElement> elements = new();
+
+            try
+            {
+                elements = Driver.FindElements(type == string.Empty ? By.CssSelector($"[{attribute}]") : By.CssSelector($"{type}[{attribute}]")).ToList();
+            }
+            catch
+            {
+                elements.Should().NotBeEmpty($"Unable to find elements by '{type}[{attribute}]' on the current screen");
+            }
+
+            return elements;
+        }
+
+        /// <summary>
+        /// Find element by attribute.
+        /// </summary>
+        /// <param name="attribute">Expected attribute to find in the element.</param>
+        /// <param name="attributeValue">Expected attribute value.</param>
+        /// <param name="type">Element type to find.</param>
+        /// <returns></returns>
+        public IWebElement ElementByAttributeValue(string attribute, string attributeValue, string type = "")
+        {
+            IWebElement element = null;
+            attribute = $"{attribute}={attributeValue}";
+            try
+            {
+                element = ElementByAttribute(attribute, type);
+            }
+            catch
+            {
+                element.Should().NotBeNull($"Unable to find the element '{type}[{attribute}]' on the current screen");
+            }
+
+            return element;
+        }
+
+        /// <summary>
+        /// Find elements by attribute.
+        /// </summary>
+        /// <param name="attribute">Expected attribute to find in the element.</param>
+        /// <param name="attributeValue">Expected attribute value.</param>
+        /// <param name="type">Element type to find.</param>
+        /// <returns></returns>
+        public List<IWebElement> ElementsByAttribute(string attribute, string attributeValue, string type = "")
+        {
+            List<IWebElement> elements = new();
+            attribute = $"{attribute}={attributeValue}";
+
+            try
+            {
+                elements = ElementsByAttribute(attribute, type);
+            }
+            catch
+            {
+                elements.Should().NotBeEmpty($"Unable to find elements by '{type}[{attribute}]' on the current screen");
             }
 
             return elements;
