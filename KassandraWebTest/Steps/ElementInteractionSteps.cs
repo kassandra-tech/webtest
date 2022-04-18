@@ -95,24 +95,5 @@ namespace KassandraWebTest.Steps
             }
         }
         #endregion Field
-
-        #region Filter
-        /// <summary>
-        /// Click the given filter.
-        /// </summary>
-        /// <param name="filter">Filter to click.</param>
-        [StepDefinition(@"the ""(.*)"" filter is clicked")]
-        public void FilterIsClicked(string filter)
-        {
-            try
-            {
-                Browser.Find.ElementByAttribute(filter, ElementType.Filter.ToString()).Click();
-            }
-            catch
-            {
-                throw;
-            }
-        }
-        #endregion Filter
     }
 }

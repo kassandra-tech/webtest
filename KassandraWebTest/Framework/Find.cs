@@ -211,6 +211,27 @@ namespace KassandraWebTest.Framework
         }
 
         /// <summary>
+        /// Find element by name attribute.
+        /// </summary>
+        /// <param name="name">Expected name to find in an element.</param>
+        /// <returns></returns>
+        public IWebElement ElementByName(string name)
+        {
+            IWebElement element = null;
+
+            try
+            {
+                element = Driver.FindElement(By.Name(name));
+            }
+            catch
+            {
+                element.Should().NotBeNull($"Unable to find the element '{name}' on the current screen");
+            }
+
+            return element;
+        }
+
+        /// <summary>
         /// Find element by attribute.
         /// </summary>
         /// <param name="attribute">Expected attribute to find in the element.</param>

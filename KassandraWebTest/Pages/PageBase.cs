@@ -69,6 +69,13 @@ namespace KassandraWebTest.Pages
         public static string IconElementName(string name) => $"{GetFormattedElementName(name)}{ElementType.Icon}";
 
         /// <summary>
+        /// Locate an image by name.
+        /// </summary>
+        /// <param name="name">Image element name.</param>
+        /// <returns></returns>
+        public static string ImageElementName(string name) => $"{GetFormattedElementName(name)}{ElementType.Image}";
+
+        /// <summary>
         /// Locate a Label by text.
         /// </summary>
         /// <param name="text">Label element text.</param>
@@ -82,6 +89,20 @@ namespace KassandraWebTest.Pages
         /// <returns></returns>
         public static string LinkElementName(string text) => $"{GetFormattedElementName(text)}{ElementType.Link}";
 
+        /// <summary>
+        /// Locate a data row by text.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string DataRowElementName(string text) => $"{GetFormattedElementName(text)}{ElementType.DataRow}";
+
+        /// <summary>
+        /// Locate a data view by text.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string DataViewElementName(string text) => $"{GetFormattedElementName(text)}{ElementType.DataView}";
+        
         private static string GetFormattedElementName(string name)
         {
             return name.Replace(@"/", string.Empty)

@@ -397,6 +397,26 @@ namespace KassandraWebTest.Steps
         }
         #endregion Dropdown
 
+        #region Container
+        /// <summary>
+        /// Check the given container is contains the expected element.
+        /// </summary>
+        /// <param name="containerName">Text of the parent container.</param>
+        /// <param name="elementName">Expected name of child element.</param>
+        [StepDefinition(@"the ""(.*)"" contains ""(.*)""")]
+        public void ContainerContains(string containerName, string elementName)
+        {
+            try
+            {
+                Browser.Find.ElementByText(containerName).FindElementByName(elementName).Displayed.Should().BeTrue();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion Container
+
         #region Label
         /// <summary>
         /// Check that the given label is displayed on the current screen.
@@ -513,5 +533,99 @@ namespace KassandraWebTest.Steps
             }
         }
         #endregion Sort
+
+        #region DataRow
+        /// <summary>
+        /// Check the datarow contains the expected icon.
+        /// </summary>
+        /// <param name="dataRow">Datarow to find the icon in.</param>
+        /// <param name="expectedIcon">Expected icon in the given datarow.</param>
+        [StepDefinition(@"the ""(.*)"" datarow contains the ""(.*)"" icon")]
+        public void DatarowContainsTheIcon(string dataRow, string expectedIcon)
+        {
+            try
+            {
+                Browser.Find.ElementById(PageBase.DataRowElementName(dataRow)).FindElementById(PageBase.IconElementName(expectedIcon)).Displayed.Should().BeTrue();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Check the expected icon is displayed for the given datarow on the current screen.
+        /// </summary>
+        /// <param name="iconName">Expected icon name.</param>
+        [StepDefinition(@"the ""(.*)"" icon is displayed in the ""(.*)"" datarow")]
+        public void DatarowIconIsDisplayed(string iconName)
+        {
+            try
+            {
+                Browser.Find.ElementById(PageBase.IconElementName(iconName)).Displayed.Should().BeTrue();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Check the expected datarow contains an element with the given name.
+        /// </summary>
+        /// <param name="dataRow">Row in a dataview to find an element of.</param>
+        /// <param name="name">Name of expected element in a datarow.</param>
+        [StepDefinition(@"the ""(.*)"" datarow contains ""(.*)""")]
+        [StepDefinition(@"the ""(.*)"" datarow contains the ""(.*)"" button")]
+        public void DatarowContains(string dataRow, string name)
+        {
+            try
+            {
+                Browser.Find.ElementById(PageBase.DataRowElementName(dataRow)).FindElementByName(name).Displayed.Should().BeTrue();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Check the expected datarow contiains an element with expected text.
+        /// </summary>
+        /// <param name="dataRow">Row in a dataview to find an element of.</param>
+        /// <param name="name">Name of expected element in a datarow.</param>
+        /// <param name="text">Expected text to find.</param>
+        [StepDefinition(@"the ""(.*)"" datarow ""(.*)"" is ""(.*)""")]
+        public void DatarowItemText(string dataRow, string name, string text)
+        {
+            try
+            {
+                Browser.Find.ElementById(PageBase.DataRowElementName(dataRow)).FindElementById(name).Text.Should().BeEquivalentTo(text);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion DataRow
+
+        #region DataView
+        /// <summary>
+        /// Check the given dataview is scrollable.
+        /// </summary>
+        /// <param name="dataView"></param>
+        [StepDefinition(@"the ""(.*)"" dataview is scrollable")]
+        public void DataViewIsScrollable(string dataView)
+        {
+            try
+            {
+                Browser.Find.ElementById(dataView).GetAttribute(Attributes.Scrollable(true)).Should().BeEquivalentTo("true");
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion DataView
     }
 }

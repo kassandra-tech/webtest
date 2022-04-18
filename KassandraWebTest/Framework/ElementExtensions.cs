@@ -155,6 +155,40 @@ namespace KassandraWebTest.Framework
         }
 
         /// <summary>
+        /// Find elements by name attribute.
+        /// </summary>
+        /// <param name="name">Expected name to find element by.</param>
+        /// <returns></returns>
+        public static IWebElement FindElementByName(this IWebElement element, string name)
+        {
+            try
+            {
+                return element.FindElement(By.Name(name));
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Find element by name attribute.
+        /// </summary>
+        /// <param name="name">Expected name to find in an element.</param>
+        /// <returns></returns>
+        public static List<IWebElement> FindElementsByName(this IWebElement element, string name)
+        {
+            try
+            {
+                return element.FindElements(By.Name(name)).ToList();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Find child element by attribute.
         /// </summary>
         /// <param name="element">Parent element to find children of.</param>
