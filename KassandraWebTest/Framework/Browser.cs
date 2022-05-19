@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 
 using KassandraWebTest.Steps;
 
@@ -23,11 +24,12 @@ namespace KassandraWebTest.Framework
             if (Driver == null)
             {
                 Driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-                Driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0, 0, 1);
-                Driver.Manage().Timeouts().PageLoad = new TimeSpan(0, 0, 10);
+                Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
                 Driver.Manage().Window.Maximize();
 
-                Wait = new WebDriverWait(Driver, new TimeSpan(0, 0, 5));
+                Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(5));
+                
                 Find = new Find(Driver);
                 Navigate = new NavigationSteps(this);
                 Interaction = new ElementInteractionSteps(this);
@@ -61,7 +63,7 @@ namespace KassandraWebTest.Framework
         /// <param name="secondsToWait">Number of seconds to wait before the next driver action.</param>
         public void WaitForSeconds(int secondsToWait)
         {
-            _ = new WebDriverWait(Driver, TimeSpan.FromSeconds(secondsToWait));
+            Thread.Sleep(secondsToWait * 1000);
         }
 
         /// <summary> 

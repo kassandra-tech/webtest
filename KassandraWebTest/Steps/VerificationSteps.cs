@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 using KassandraWebTest.Framework;
 using KassandraWebTest.Kassandra;
@@ -340,6 +341,28 @@ namespace KassandraWebTest.Steps
                 throw;
             }
         }
+
+        /// <summary>
+        /// Check the expected error message displays the correct text.
+        /// Validation will be ignored if the expectedText is empty.
+        /// </summary>
+        /// <param name="messageName"></param>
+        /// <param name="expectedText"></param>
+        [StepDefinition(@"the ""(.*)"" message displays ""(.*)""")]
+        public void MessageDisplays(string messageName, string expectedText)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(expectedText))
+                {
+                    Browser.Find.ElementById(PageBase.MessageLabelName(messageName)).Text.Should().BeEquivalentTo(expectedText);
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
         #endregion Text
 
         #region Message
@@ -445,7 +468,8 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.ElementById(PageBase.LabelElementName(labelName)).SendKeys(expectedText);
+                Browser.WaitForSeconds(2);
+                Browser.Find.ElementById(PageBase.LabelElementName(labelName)).Text.Should().BeEquivalentTo(expectedText);
             }
             catch
             {
@@ -468,6 +492,7 @@ namespace KassandraWebTest.Steps
             {
                 if (url != SiteMap.UnknownScreen)
                 {
+                    Browser.WaitForSeconds(1);
                     Browser.Driver.Title.Should().BeEquivalentTo(screenName);
                 }
                 else

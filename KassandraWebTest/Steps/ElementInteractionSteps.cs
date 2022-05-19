@@ -38,25 +38,25 @@ namespace KassandraWebTest.Steps
         }
         #endregion Button
 
-        #region Icon
+        #region Checkbox
         /// <summary>
-        /// Click the icon.
+        /// Check the checkbox.
         /// </summary>
-        /// <param name="iconName">Name of the icon.</param>
-        [StepDefinition(@"the ""(.*)"" icon is clicked")]
-        public void IconIsClicked(string iconName)
+        /// <param name="buttonName">Name of the checkbox.</param>
+        [StepDefinition(@"the ""(.*)"" checkbox is checked")]
+        public void CheckboxIsChecked(string buttonName)
         {
             try
             {
-                Browser.Find.ElementById(PageBase.IconElementName(iconName)).Click();
+                Browser.Find.ElementById(PageBase.CheckboxElementName(buttonName)).Click();
             }
             catch
             {
                 throw;
             }
         }
-        #endregion Icon
-        
+        #endregion Checkbox
+
         #region Dropdown
         /// <summary>
         /// Click a dropdown.
@@ -95,5 +95,44 @@ namespace KassandraWebTest.Steps
             }
         }
         #endregion Field
+
+        #region Icon
+        /// <summary>
+        /// Click the icon.
+        /// </summary>
+        /// <param name="iconName">Name of the icon.</param>
+        [StepDefinition(@"the ""(.*)"" icon is clicked")]
+        public void IconIsClicked(string iconName)
+        {
+            try
+            {
+                Browser.Find.ElementById(PageBase.IconElementName(iconName)).Click();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion Icon
+
+        #region Link
+        /// <summary>
+        /// Click a link.
+        /// </summary>
+        /// <param name="buttonName">Name of the link.</param>
+        [StepDefinition(@"the ""(.*)"" link is clicked")]
+        public void LinkIsClicked(string linkText)
+        {
+            try
+            {
+                Browser.Find.ElementByLinkText(linkText).Click();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        #endregion
+
     }
 }

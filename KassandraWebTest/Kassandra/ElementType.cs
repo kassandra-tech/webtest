@@ -6,48 +6,48 @@
     public enum ElementType
     {
         /// <summary>
-        /// Button
+        /// cutton
         /// </summary>
-        Button = 1,
+        button = 1,
         /// <summary>
-        /// Checkbox
+        /// checkbox
         /// </summary>
-        Checkbox,
+        checkbox,
         /// <summary>
-        /// Data Row
+        /// dataRow
         /// </summary>
-        DataRow,
+        dataRow,
         /// <summary>
-        /// Data View
+        /// dataView
         /// </summary>
-        DataView,
+        dataView,
         /// <summary>
-        /// Dropdown
+        /// dropdown
         /// </summary>
-        Dropdown,
+        dropdown,
         /// <summary>
-        /// Field
+        /// field
         /// </summary>
-        Field,
+        field,
         /// <summary>
-        /// Icon
+        /// icon
         /// </summary>
-        Icon,
+        icon,
         /// <summary>
-        /// Image
+        /// image
         /// </summary>
-        Image,
+        image,
         /// <summary>
-        /// Label
+        /// label
         /// </summary>
-        Label,
+        label,
         /// <summary>
-        /// Link
+        /// link
         /// </summary>
-        Link,
+        link,
         /// <summary>
-        /// Sortable Dropdown
+        /// sortableDropdown
         /// </summary>
-        SortableDropdown
+        sortableDropdown
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace KassandraWebTest.Kassandra
+namespace KassandraWebTest.Kassandra
 {
     /// <summary>
     /// Kassandra site details for screens and links to Kassandra pages.
@@ -119,27 +119,29 @@
         {
             return screen switch
             {
-                AccountActivity => $"{KassandraBaseAddress}account-activity",
-                ApiKeys => $"{KassandraBaseAddress}api-keys",
-                CreateAccount => $"{KassandraBaseAddress}create-account",
-                DeleteAccount => $"{KassandraBaseAddress}delete-account",
-                FavoriteCoins => $"{KassandraBaseAddress}favorite-coins",
-                FavoriteContent => $"{KassandraBaseAddress}favorite-content",
-                FavoriteMarkets => $"{KassandraBaseAddress}favorite-markets",
-                ForgotAccountCredentials => $"{KassandraBaseAddress}forgot-account-credentials",
-                Home => KassandraBaseAddress,
-                LogIn => $"{KassandraBaseAddress}log-in",
-                Markets => $"{KassandraBaseAddress}markets",
-                Profile => $"{KassandraBaseAddress}profile",
-                ResetPassword => $"{KassandraBaseAddress}reset-password",
-                ResetSecurityToken => $"{KassandraBaseAddress}reset-security-token",
-                ResumeAccount => $"{KassandraBaseAddress}resume-acount",
-                SecurityToken => $"{KassandraBaseAddress}security-token",
-                SuspendAccount => $"{KassandraBaseAddress}suspend-account",
-                TrustedDevices => $"{KassandraBaseAddress}trusted-devices",
-                UserInformation => $"{KassandraBaseAddress}user-information",
+                AccountActivity => $"{KassandraBaseAddress}account-activity{FileExtension}",
+                ApiKeys => $"{KassandraBaseAddress}api-keys{FileExtension}",
+                CreateAccount => $"{KassandraBaseAddress}create-account{FileExtension}",
+                DeleteAccount => $"{KassandraBaseAddress}delete-account{FileExtension}",
+                FavoriteCoins => $"{KassandraBaseAddress}favorite-coins{FileExtension}",
+                FavoriteContent => $"{KassandraBaseAddress}favorite-content{FileExtension}",
+                FavoriteMarkets => $"{KassandraBaseAddress}favorite-markets{FileExtension}",
+                ForgotAccountCredentials => $"{KassandraBaseAddress}forgot-password{FileExtension}",
+                Home => $"{KassandraBaseAddress}home{FileExtension}",
+                LogIn => $"{KassandraBaseAddress}login{FileExtension}",
+                Markets => $"{KassandraBaseAddress}markets{FileExtension}",
+                Profile => $"{KassandraBaseAddress}profile{FileExtension}",
+                ResetPassword => $"{KassandraBaseAddress}reset-password{FileExtension}",
+                ResetSecurityToken => $"{KassandraBaseAddress}reset-security-token{FileExtension}",
+                ResumeAccount => $"{KassandraBaseAddress}resume-acount{FileExtension}",
+                SecurityToken => $"{KassandraBaseAddress}security-token{FileExtension}",
+                SuspendAccount => $"{KassandraBaseAddress}suspend-account{FileExtension}",
+                TrustedDevices => $"{KassandraBaseAddress}trusted-devices{FileExtension}",
+                UserInformation => $"{KassandraBaseAddress}user-information{FileExtension}",
                 _ => UnknownScreen,
             };
         }
+
+        private const string FileExtension = ".html";
     }
 }

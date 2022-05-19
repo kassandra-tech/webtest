@@ -31,84 +31,89 @@ namespace KassandraWebTest.Pages
         /// </summary>
         /// <param name="text">Button element text.</param>
         /// <returns></returns>
-        public static string ButtonElementName(string text) => $"{GetFormattedElementName(text)}{ElementType.Button}";
+        public static string ButtonElementName(string text) => $"{FormatName(text)}-{ElementType.button}";
 
         /// <summary>
         /// Locate a checkbox by name.
         /// </summary>
         /// <param name="name">Checkbox element name.</param>
         /// <returns></returns>
-        public static string CheckboxElementName(string name) => $"{GetFormattedElementName(name)}{ElementType.Checkbox}";
+        public static string CheckboxElementName(string name) => $"{FormatName(name)}-{ElementType.checkbox}";
 
         /// <summary>
         /// Locate a dropdown by name.
         /// </summary>
         /// <param name="name">Dropdown element name</param>
         /// <returns></returns>
-        public static string DropdownElementName(string name) => $"{GetFormattedElementName(name)}{ElementType.Dropdown}";
+        public static string DropdownElementName(string name) => $"{FormatName(name)}-{ElementType.dropdown}";
 
         /// <summary>
         /// Locate a dropdown by name.
         /// </summary>
         /// <param name="name">Dropdown element name</param>
         /// <returns></returns>
-        public static string SortableDropdownElementName(string name) => $"{GetFormattedElementName(name)}{ElementType.SortableDropdown}";
+        public static string SortableDropdownElementName(string name) => $"{FormatName(name)}-{ElementType.sortableDropdown}";
 
         /// <summary>
         /// Locate a field by name.
         /// </summary>
         /// <param name="name">Field element name.</param>
         /// <returns></returns>
-        public static string FieldElementName(string name) => $"{GetFormattedElementName(name)}{ElementType.Field}";
+        public static string FieldElementName(string name) => $"{FormatName(name)}-{ElementType.field}";
 
         /// <summary>
         /// Locate an icon by name.
         /// </summary>
         /// <param name="name">Icon element name.</param>
         /// <returns></returns>
-        public static string IconElementName(string name) => $"{GetFormattedElementName(name)}{ElementType.Icon}";
+        public static string IconElementName(string name) => $"{FormatName(name)}-{ElementType.icon}";
 
         /// <summary>
         /// Locate an image by name.
         /// </summary>
         /// <param name="name">Image element name.</param>
         /// <returns></returns>
-        public static string ImageElementName(string name) => $"{GetFormattedElementName(name)}{ElementType.Image}";
+        public static string ImageElementName(string name) => $"{FormatName(name)}-{ElementType.image}";
 
         /// <summary>
         /// Locate a Label by text.
         /// </summary>
         /// <param name="text">Label element text.</param>
         /// <returns></returns>
-        public static string LabelElementName(string text) => $"{GetFormattedElementName(text)}{ElementType.Label}";
+        public static string LabelElementName(string text) => $"{FormatName(text)}-{ElementType.label}";
 
         /// <summary>
         /// Locate a link by text.
         /// </summary>
         /// <param name="text">Link element text.</param>
         /// <returns></returns>
-        public static string LinkElementName(string text) => $"{GetFormattedElementName(text)}{ElementType.Link}";
+        public static string LinkElementName(string text) => $"{FormatName(text)}-{ElementType.link}";
+
+        /// <summary>
+        /// Locate a message label by text.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string MessageLabelName(string text) => $"{FormatName(text)}-message-{ElementType.label}";
 
         /// <summary>
         /// Locate a data row by text.
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static string DataRowElementName(string text) => $"{GetFormattedElementName(text)}{ElementType.DataRow}";
+        public static string DataRowElementName(string text) => $"{FormatName(text)}-{ElementType.dataRow}";
 
         /// <summary>
         /// Locate a data view by text.
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static string DataViewElementName(string text) => $"{GetFormattedElementName(text)}{ElementType.DataView}";
-        
-        private static string GetFormattedElementName(string name)
+        public static string DataViewElementName(string text) => $"{FormatName(text)}-{ElementType.dataView}";
+
+        private static string FormatName(string name)
         {
-            return name.Replace(@"/", string.Empty)
-                       .Replace("?", string.Empty)
-                       .Replace("!", string.Empty)
-                       .Replace(" ", string.Empty);
+            return name.Replace(" ", "-")
+                       .ToLower();
         }
     }
 }

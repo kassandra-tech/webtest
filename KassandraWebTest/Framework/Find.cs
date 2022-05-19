@@ -148,6 +148,27 @@ namespace KassandraWebTest.Framework
         }
 
         /// <summary>
+        /// Find an element by the link text.
+        /// </summary>
+        /// <param name="text">Expected text of the element to find.</param>
+        /// <returns></returns>
+        public IWebElement ElementByLinkText(string text)
+        {
+            IWebElement element = null;
+
+            try
+            {
+                element = Driver.FindElement(By.LinkText(text));
+            }
+            catch
+            {
+                element.Should().NotBeNull($"Unable to find an element by text '{text}' on the current screen");
+            }
+
+            return element;
+        }
+
+        /// <summary>
         /// Find elements by text.
         /// </summary>
         /// <param name="text">Expected text of the elements to find.</param>
