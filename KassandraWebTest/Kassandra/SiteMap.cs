@@ -43,7 +43,7 @@ namespace KassandraWebTest.Kassandra
         /// <summary>
         /// Forgot Account Credentials
         /// </summary>
-        public const string ForgotAccountCredentials = "Forgot Account Credentials";
+        public const string ForgotPassword = "Forgot Password";
 
         /// <summary>
         /// Home
@@ -126,7 +126,7 @@ namespace KassandraWebTest.Kassandra
                 FavoriteCoins => $"{KassandraBaseAddress}favorite-coins{FileExtension}",
                 FavoriteContent => $"{KassandraBaseAddress}favorite-content{FileExtension}",
                 FavoriteMarkets => $"{KassandraBaseAddress}favorite-markets{FileExtension}",
-                ForgotAccountCredentials => $"{KassandraBaseAddress}forgot-password{FileExtension}",
+                ForgotPassword => $"{KassandraBaseAddress}forgot-password{FileExtension}",
                 Home => $"{KassandraBaseAddress}home{FileExtension}",
                 LogIn => $"{KassandraBaseAddress}login{FileExtension}",
                 Markets => $"{KassandraBaseAddress}markets{FileExtension}",

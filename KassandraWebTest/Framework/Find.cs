@@ -85,6 +85,27 @@ namespace KassandraWebTest.Framework
         }
 
         /// <summary>
+        /// Locate an element by its class name.
+        /// </summary>
+        /// <param name="className">Value to locate an element by class.</param>
+        /// <returns></returns>
+        public IWebElement ElementByClass(string className)
+        {
+            IWebElement element = null;
+
+            try
+            {
+                element = Driver.FindElement(By.ClassName(className));
+            }
+            catch
+            {
+                element.Should().NotBeNull($"Unable to find an element by class '{className}' on the current screen");
+            }
+
+            return element;
+        }
+
+        /// <summary>
         /// Locate an element by its XPath selector.
         /// </summary>
         /// <param name="selector">Value to locate an element by XPath.</param>
@@ -137,7 +158,7 @@ namespace KassandraWebTest.Framework
 
             try
             {
-                element = Driver.FindElement(By.XPath($"[text()='{text}']"));
+                element = Driver.FindElement(By.XPath($"//*[text()='{text}']"));
             }
             catch
             {

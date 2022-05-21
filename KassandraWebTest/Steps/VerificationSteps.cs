@@ -354,6 +354,7 @@ namespace KassandraWebTest.Steps
             try
             {
                 Browser.Driver.Title.Should().BeEquivalentTo(title);
+                Browser.Find.ElementByClass("kassandra-title").Text.Should().BeEquivalentTo(title);
             }
             catch
             {
@@ -487,7 +488,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.ElementById(PageBase.LabelElementName(labelName)).Displayed.Should().BeTrue();
+                Browser.Find.ElementByText(labelName).Displayed.Should().BeTrue();
             }
             catch
             {
