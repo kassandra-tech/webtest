@@ -93,6 +93,25 @@ namespace KassandraWebTest.Steps
                 throw;
             }
         }
+
+        /// <summary>
+        /// Check the button has the expected text.
+        /// </summary>
+        /// <param name="buttonName">Name of the button to check the state of.</param>
+        /// <param name="expectedText">Expected text for the button.</param>
+        [StepDefinition(@"the ""(.*)"" button text is ""(.*)""")]
+        public void ButtonTextIs(string buttonName, string expectedText)
+        {
+            try
+            {
+                Browser.Find.ElementById(PageBase.ButtonElementName(buttonName)).Text.Should().BeEquivalentTo(expectedText);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         #endregion Button
 
         #region Icon
@@ -287,6 +306,24 @@ namespace KassandraWebTest.Steps
                 throw;
             }
         }
+
+        /// <summary>
+        /// Check if the expected field has the expected text.
+        /// </summary>
+        /// <param name="fieldName">Expected field name.</param>
+        /// <param name="expectedText">Expected text contained in the given field.</param>
+        [StepDefinition(@"the ""(.*)"" field text is ""(.*)""")]
+        public void FieldText(string fieldName, string expectedText)
+        {
+            try
+            {
+                Browser.Find.ElementById(PageBase.FieldElementName(fieldName)).Text.Should().BeEquivalentTo(expectedText);
+            }
+            catch
+            {
+                throw;
+            }
+        }
         #endregion Field
 
         #region Text
@@ -299,7 +336,7 @@ namespace KassandraWebTest.Steps
         {
             try
             {
-                Browser.Find.ElementById(expectedText).Text.Should().BeEquivalentTo(expectedText);
+                Browser.Find.ElementByText(expectedText).Text.Should().BeEquivalentTo(expectedText);
             }
             catch
             {
